@@ -4,7 +4,8 @@
 module Config where
 
 import qualified Data.Text as T
-import Debug.Trace
+import Control.Monad (liftM2)
+import Control.Applicative ((<|>))
 import Dhall
 import System.Directory (XdgDirectory (XdgConfig), doesPathExist, getXdgDirectory)
 import System.Environment (lookupEnv)
@@ -15,6 +16,9 @@ opeDir = "ope"
 
 tokenFilePath :: FilePath
 tokenFilePath = "token.dhall"
+
+token :: IO (Maybe T.Text)
+token = liftM2 (<|>) envToken fileToken
 
 data Token = Token {githubToken :: Text}
   deriving (Generic, Show)
