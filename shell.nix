@@ -11,5 +11,6 @@ in
       hlint
       ghcid
       niv
+      zlib
     ];
   }
