@@ -8,7 +8,9 @@ let
     source-overrides = {};
     modifier = drv:
       pkgs.haskell.lib.addBuildTools drv (with pkgs.haskellPackages;
-        [ cabal-install
+        [
+          ghc
+          cabal-install
           ghcid
           ormolu
           hlint
